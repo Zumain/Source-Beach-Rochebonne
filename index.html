@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beach-volley · Saint-Malo</title>
+<style>
+  :root {
+    --paper: #faf7f0;
+    --ink: #181613;
+    --ink-soft: #4a4641;
+    --rule: #cdc6b8;
+    --sea: #2a6ea8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .card {
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+  }
+  .kicker {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-family: "Didot", "Bodoni 72", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(32px, 7vw, 46px);
+    line-height: 1.1;
+    margin: 0 0 6px;
+  }
+  p.deck {
+    color: var(--ink-soft);
+    margin: 0 0 26px;
+    font-size: 15px;
+  }
+  .links {
+    display: grid;
+    gap: 12px;
+  }
+  a.link {
+    display: block;
+    text-decoration: none;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 16px 18px;
+    text-align: left;
+    transition: border-color .12s, transform .1s;
+  }
+  a.link:hover { border-color: var(--ink); }
+  a.link:active { transform: scale(0.99); }
+  a.link .label {
+    font-family: "Didot", "Bodoni 72", Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 22px;
+  }
+  a.link .sub {
+    color: var(--ink-soft);
+    font-size: 13px;
+    margin-top: 2px;
+  }
+  a.link.primary {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  a.link.primary .sub { color: var(--paper); opacity: 0.75; }
+  footer {
+    margin-top: 28px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  footer a { color: var(--sea); text-decoration: none; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="kicker">Beach-volley · Rochebonne</div>
+    <h1>On joue&nbsp;?</h1>
+    <p class="deck">Choisis une vue selon ton appareil.</p>
+
+    <div class="links" id="links">
+      <a class="link primary" href="beach-volley-conditions-mobile.html" id="mobileLink">
+        <div class="label">Version mobile</div>
+        <div class="sub">Vue optimisée iPhone / Android</div>
+      </a>
+      <a class="link" href="beach-volley-conditions.html" id="desktopLink">
+        <div class="label">Version bureau</div>
+        <div class="sub">Vue large avec heatmap</div>
+      </a>
+    </div>
+
+    <footer>
+      Saint-Malo · Côte d'Émeraude — données&nbsp;<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>
+    </footer>
+  </div>
+
+<script>
+  // Auto-redirect phones to the mobile page after a short delay,
+  // unless the user overrides with ?stay=1 on the URL.
+  const params = new URLSearchParams(location.search);
+  const isMobile = matchMedia('(max-width: 640px)').matches;
+  if (isMobile && !params.has('stay')) {
+    setTimeout(() => { location.replace('beach-volley-conditions-mobile.html'); }, 400);
+  }
+</script>
+</body>
+</html>
